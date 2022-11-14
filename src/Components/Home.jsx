@@ -1,10 +1,11 @@
 import React from "react";
+import {connect} from 'react-redux';
 import Auxiliary from "../hoc/Auxiliary";
 import Input from '../Components/Input';
-import ax from 'axios';
-import { imdbApiBaseUrl, tableHead } from '../Config/RouterConfig';
+import { tableHead } from '../Config/RouterConfig';
 import SmartList from '../Components/SmartList';
 import Spinner from '../Components/Spinner';
+import {getImdbData} from '../store/imdbSlice';
 
 class Home extends React.Component{
     state = {
@@ -18,19 +19,7 @@ class Home extends React.Component{
         console.log(evt.target.value);
     }
     onSearch = () =>{
-        this.setState({loading: true});
-        let path = imdbApiBaseUrl + this.state.squery;
-        ax.get(path)
-            .then(res => {
-                this.setState({
-                    data: res.data.results,
-                    loading: false
-                });
-                console.log(res.data.results);
-            })
-            .catch(function (){
-                console.log("Invalid Query!");
-            });
+        this.props.getImdbData({squery: this.state.squery});
     }
     render(){
         const styled = {
@@ -38,14 +27,14 @@ class Home extends React.Component{
             height: 32
         };
         let smartlist = null;
-        if(this.state.loading){
+        if(this.props.loading){
             smartlist = (
                 <Spinner />
             );
         } else {
             smartlist = <SmartList 
                 smartListHeaders={tableHead}
-                smartListContents={this.state.data}
+                smartListContents={this.props.data ? this.props.data : []}
                 actionLabel={'Details'}
                 action={'navlink'}
                 view={'/details'}
@@ -78,4 +67,11 @@ class Home extends React.Component{
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    data: state.imdb.data,
+    loading: state.imdb.loading
+});
+
+const mapDispatchToProps = {getImdbData};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from './imdbSlice';
+import imdbReducer from './imdbSlice';
 
 export default configureStore({
     reducer:{
-        auth: authReducer,
+        imdb: imdbReducer,
     }
 });

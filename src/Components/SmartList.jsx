@@ -8,8 +8,6 @@ class SmartList extends Component {
     constructor() {
         super();
         this.state = {
-            id: {},
-            image: {},
             data: [],
         }
     }
@@ -51,7 +49,7 @@ class SmartList extends Component {
                                         />}
                                     </td> : null
                                 ))}
-                                <td  style={{verticalAlign: "middle", padding: '10px'}}>
+                                <td style={{verticalAlign: "middle", padding: '10px'}}>
                                     {this.props.action === 'navlink' ? 
                                         <NavLink 
                                             className="btn btn-outline-info" 

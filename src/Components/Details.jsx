@@ -18,16 +18,12 @@ class Details extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
         this.getDetailsById();
     }
 
     getDetailsById = () =>{
-        //const id = 'tt5500218';
         const id = this.props.match.params.id;
-        // console.log(name);
         const path = imdbApiWikipedia(id);
-        
         axios.get(path)
         .then(res => {
             this.setState({
