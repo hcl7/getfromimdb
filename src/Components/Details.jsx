@@ -47,10 +47,11 @@ class Details extends React.Component {
 
     render(){
         return(
-            <div className="container bg-dark">
+            <div className="container bg-dark text-light">
                 <div className="row">
                     <div className="col-sm">
                         <Input 
+                            label={'Awards'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -59,6 +60,7 @@ class Details extends React.Component {
                     </div>
                     <div className="col-sm">
                         <Input 
+                            label={'Title'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -67,6 +69,7 @@ class Details extends React.Component {
                     </div>
                     <div className="col-sm">
                         <Input 
+                            label={'Genres'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -74,7 +77,8 @@ class Details extends React.Component {
                         />
                     </div>
                     <div className="col-sm">
-                        <Input 
+                        <Input
+                            label={'Writers'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -84,7 +88,8 @@ class Details extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-sm">
-                        <Input 
+                        <Input
+                            label={'Rating'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -93,6 +98,7 @@ class Details extends React.Component {
                     </div>
                     <div className="col-sm">
                         <Input 
+                            label={'Directors'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -101,6 +107,7 @@ class Details extends React.Component {
                     </div>
                     <div className="col-sm">
                         <Input 
+                            label={'Release Date'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -108,7 +115,8 @@ class Details extends React.Component {
                         />
                     </div>
                     <div className="col-sm">
-                        <Input 
+                        <Input
+                            label={'imdb Rating'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -119,6 +127,7 @@ class Details extends React.Component {
                 <div className="row">
                     <div className="col-sm">
                         <Input 
+                            label={'Keywords'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
@@ -129,6 +138,7 @@ class Details extends React.Component {
                 <div className="row">
                     <div className="col-sm">
                         <Input 
+                            label={'Description'}
                             isReadOnly={true}
                             elementType="input"
                             type="label"
