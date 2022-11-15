@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { imdbApiBaseUrl } from '../Config/RouterConfig';
+import { imdbApiBaseUrl, imdbApiWikipedia } from '../Config/RouterConfig';
 import ax from 'axios';
 
 export const imdbSlice = createSlice({
@@ -8,7 +8,8 @@ export const imdbSlice = createSlice({
         error: null,
         loading: false,
         message: '',
-        data: '',
+        data: [],
+        details: []
     },
     reducers: {
         setImdbLoading: (state, action) => {
@@ -20,6 +21,9 @@ export const imdbSlice = createSlice({
         },
         setImdbError: (state, action) => {
             state.error = action.payload;
+        },
+        setImdbDetails: (state, action) => {
+            state.details = action.payload;
         }
     }
 });
@@ -41,10 +45,35 @@ export const getImdbData = (data) => async (dispatch) =>{
         dispatch(setImdbData(res.data.results));
     }
     catch (error){
-        setImdbError(error);
+        dispatch(setImdbError(error));
     }
 }
 
-export const {setImdbLoading,setImdbData,setImdbError} = imdbSlice.actions;
+export const getImdbDetails = (data) => async (dispatch) => {
+    let loading = true;
+    dispatch(setImdbLoading(loading));
+    let path = imdbApiWikipedia(data.id);
+    let config = {
+        method: 'get',
+        url: path,
+    }
+    try {
+        const res = await ax(config);
+        console.log(res.data);
+        loading = false;
+        dispatch(setImdbLoading(loading));
+        dispatch(setImdbDetails(res.data));
+    }
+    catch(error){
+        dispatch(setImdbError(error))
+    }
+}
+
+export const {
+    setImdbLoading,
+    setImdbData,
+    setImdbError, 
+    setImdbDetails
+} = imdbSlice.actions;
 
 export default imdbSlice.reducer;
