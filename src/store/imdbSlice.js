@@ -19,7 +19,7 @@ export const imdbSlice = createSlice({
             state.data = action.payload;
         },
         setImdbError: (state, action) => {
-            state.error = action.payload.error;
+            state.error = action.payload;
         }
     }
 });
