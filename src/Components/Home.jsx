@@ -61,7 +61,7 @@ class Home extends React.Component{
                         </div>
                     </div>
                 </div>
-                {smartlist}
+                {this.props.data ? smartlist : <p className="container text-center">{this.props.error}</p>}
             </Auxiliary>
         );
     }
@@ -69,7 +69,8 @@ class Home extends React.Component{
 
 const mapStateToProps = (state) => ({
     data: state.imdb.data,
-    loading: state.imdb.loading
+    loading: state.imdb.loading,
+    error: state.imdb.error
 });
 
 const mapDispatchToProps = {getImdbData};

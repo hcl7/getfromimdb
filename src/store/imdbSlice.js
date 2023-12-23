@@ -14,7 +14,6 @@ export const imdbSlice = createSlice({
     reducers: {
         setImdbLoading: (state, action) => {
             state.loading = action.payload;
-            console.log(state.loading);
         },
         setImdbData: (state, action) => {
             state.data = action.payload;
@@ -43,6 +42,7 @@ export const getImdbData = (data) => async (dispatch) =>{
         loading = false;
         dispatch(setImdbLoading(loading));
         dispatch(setImdbData(res.data.results));
+        dispatch(setImdbError(res.data.errorMessage));
     }
     catch (error){
         dispatch(setImdbError(error));
